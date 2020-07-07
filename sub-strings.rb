@@ -1,7 +1,7 @@
 def substring_from_first (array)
     result = []
 
-    array.each_with_index do |x, index|
+    array.each_index do |index|
         substring_array = array[0..index]
         substring = substring_array.join("")
         result.append(substring)
@@ -13,7 +13,7 @@ def all_substrings (word)
     array = word.split("")
     result = []
     
-    array.each_with_index do |x, index|
+    array.each_index do |index|
         substring_array = substring_from_first(array[index..-1])
         result.concat(substring_array)
     end
