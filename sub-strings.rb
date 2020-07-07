@@ -32,7 +32,8 @@ end
 def substrings (string, substring_array)
     result = {}
     string = string.downcase
-    for word in substring_array
+    
+    substring_array.each do |word|
         word = word.downcase
         if is_substring(string, word)
             result[word] = substring_occurances(string, word)
