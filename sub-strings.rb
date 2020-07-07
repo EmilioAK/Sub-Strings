@@ -1,24 +1,21 @@
 def substring_from_first (array)
-    index = 0
     result = []
-    while index < array.length() do
+
+    array.each_with_index do |x, index|
         substring_array = array[0..index]
         substring = substring_array.join("")
-        
         result.append(substring)
-        index += 1
     end
     return result
 end
 
 def all_substrings (word)
     array = word.split("")
-    index = 0
     result = []
-    while index < array.length() do
+    
+    array.each_with_index do |x, index|
         substring_array = substring_from_first(array[index..-1])
         result.concat(substring_array)
-        index += 1
     end
     return result
 end
