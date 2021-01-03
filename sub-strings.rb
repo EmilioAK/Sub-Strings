@@ -1,43 +1,13 @@
-def substring_from_first (array)
-    result = []
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-    array.each_index do |index|
-        substring_array = array[0..index]
-        substring = substring_array.join("")
-        result.append(substring)
+def substrings_of_word (word, dictionary)
+    dictionary.reject {|dict_word| word.downcase.scan(dict_word) == []}
+end
+
+def substrings (string, dictionary)
+    words = string.scan(/[\w']+/)
+    words.each_with_object({}) do |word, hash|
+        substrings = substrings_of_word(word, dictionary)
+        substrings.each {|substring| hash[substring] ? hash[substring] += 1 : hash[substring] = 1}
     end
-    return result
-end
-
-def all_substrings (word)
-    array = word.split("")
-    result = []
-    
-    array.each_index do |index|
-        substring_array = substring_from_first(array[index..-1])
-        result.concat(substring_array)
-    end
-    return result
-end
-
-def is_substring (string, substring)
-    substrings = all_substrings(string)
-    return substrings.include? substring
-end
-
-def substring_occurances (string, substring)
-    return all_substrings(string).count(substring)
-end
-
-def substrings (string, substring_array)
-    result = {}
-    string = string.downcase
-    
-    substring_array.each do |word|
-        word = word.downcase
-        if is_substring(string, word)
-            result[word] = substring_occurances(string, word)
-        end
-    end
-    return result
 end
